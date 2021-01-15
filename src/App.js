@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Timer from "./components/Timer.jsx";
+import { useState } from "react";
+import Container from "@material-ui/core/Container";
 
 function App() {
+  const [isBreak, setIsBreak] = useState(false);
+  const switchClock = () => {
+    setIsBreak(!isBreak);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        backgroundColor: "red",
+      }}
+    >
+      {isBreak ? (
+        <Timer timeToSpend={2} switchClock={switchClock}>
+          Time to Break
+        </Timer>
+      ) : (
+        <Timer timeToSpend={5} switchClock={switchClock}>
+          Time to learn
+        </Timer>
+      )}
+    </Container>
   );
 }
 
